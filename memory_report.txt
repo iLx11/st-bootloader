@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+   4016	     20	   1644	   5680	   1630	build/bootloader.elf

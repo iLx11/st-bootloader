@@ -1,0 +1,74 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "download",
+			"type": "shell",
+			"command": "openocd",
+			"args": [
+				"-f",
+				"interface/stlink.cfg",
+				"-f",
+				"target/stm32f1x.cfg",
+				"-c",
+				"program build/test.elf verify reset exit"
+			],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "mingw32-make",
+			"args": [
+				"-j8"
+			],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "clean",
+			"type": "shell",
+			"command": "make",
+			"args": [
+				"clean"
+			],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			}
+		},
+		{
+			"label": "rebuild",
+			"type": "shell",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"clean",
+				"build"
+			]
+		}
+	]
+  }
